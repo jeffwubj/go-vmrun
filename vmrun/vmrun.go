@@ -53,6 +53,15 @@ func (vmrun *Vmrun) Start(vmxpath string, nogui bool) (*types.VM, error) {
 }
 
 // Stop powers off given VM
-func (vmrun *Vmrun) Stop() error {
-	return nil
+func (vmrun *Vmrun) Stop(vmxpath string) (*types.VM, error) {
+	vm, err := types.NewVM(vmxpath)
+	if err != nil {
+		return nil, err
+	}
+	cmd := exec.Command(DefaultVmrunLocation, "stop", vmxpath)
+	_, err = cmdStdout(cmd)
+	if err != nil {
+		return vm, err
+	}
+	return vm, nil
 }
