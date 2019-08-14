@@ -15,7 +15,7 @@ func cmdStdout(cmd *exec.Cmd) ([]byte, error) {
 	}
 
 	if len(stderr.Bytes()) != 0 {
-		return nil, fmt.Errorf(stderr.String())
+		return stdout.Bytes(), fmt.Errorf(stderr.String())
 	}
 
 	return stdout.Bytes(), nil

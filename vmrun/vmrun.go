@@ -33,8 +33,23 @@ func (vmrun *Vmrun) List() ([]*types.VM, error) {
 }
 
 // Start powers on given VM
-func (vmrun *Vmrun) Start() error {
-	return nil
+func (vmrun *Vmrun) Start(vmxpath string, nogui bool) (*types.VM, error) {
+	vm, err := types.NewVM(vmxpath)
+	if err != nil {
+		return nil, err
+	}
+
+	gui := "gui"
+	if nogui {
+		gui = "nogui"
+	}
+
+	cmd := exec.Command(DefaultVmrunLocation, "start", vmxpath, gui)
+	_, err = cmdStdout(cmd)
+	if err != nil {
+		return vm, err
+	}
+	return vm, nil
 }
 
 // Stop powers off given VM
