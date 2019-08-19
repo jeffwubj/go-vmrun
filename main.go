@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-	vmrun := &vmrun.Vmrun{}
 	vmx, err := vmrun.List()
 	if err != nil {
 		fmt.Println(err.Error())

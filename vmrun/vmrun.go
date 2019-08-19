@@ -12,7 +12,7 @@ type Vmrun struct {
 }
 
 // List list all running VMs
-func (vmrun *Vmrun) List() ([]*types.VM, error) {
+func List() ([]*types.VM, error) {
 	var vms []*types.VM
 	cmd := exec.Command(DefaultVmrunLocation, "list")
 	buf, err := cmdStdout(cmd)
