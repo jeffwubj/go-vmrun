@@ -2,7 +2,6 @@ package vmrun
 
 import (
 	"bytes"
-	"fmt"
 	"os/exec"
 )
 
@@ -14,9 +13,9 @@ func cmdStdout(cmd *exec.Cmd) ([]byte, error) {
 		return nil, err
 	}
 
-	if len(stderr.Bytes()) != 0 {
-		return stdout.Bytes(), fmt.Errorf(stderr.String())
-	}
+	// if len(stderr.Bytes()) != 0 {
+	// 	return stdout.Bytes(), fmt.Errorf(stderr.String())
+	// }
 
 	return stdout.Bytes(), nil
 }
