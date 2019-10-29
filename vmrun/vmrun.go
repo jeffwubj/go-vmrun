@@ -65,3 +65,14 @@ func (vmrun *Vmrun) Stop(vmxpath string) (*types.VM, error) {
 	}
 	return vm, nil
 }
+
+// IsVMrunning
+func IsVMRunning(vmxpath string) bool {
+	vms, _ := List()
+	for _, vm := range vms {
+		if vm.Path == vmxpath {
+			return true
+		}
+	}
+	return false
+}
